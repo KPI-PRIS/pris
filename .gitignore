@@ -36,6 +36,12 @@ pnpm-lock.yaml
 *.swp
 *.tmp
 
+#CLIENT (FRONT)
+./client/node_modules
+./client/dist
+./client/dist-ssr
+./client/*.local
+
 #API-GATEWAY
 ./api-gateway/dist
 ./api-gateway/build
