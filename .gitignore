@@ -1,0 +1,49 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.*.local
+
+# Build files
+dist/
+.build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Debugging
+.vscode/
+.idea/
+.DS_Store
+
+# Test output
+coverage/
+test-report.xml
+.nyc_output/
+
+# Optional lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Temporary files
+*.swp
+*.tmp
+
+#API-GATEWAY
+./api-gateway/dist
+./api-gateway/build
+./api-gateway/.env
+./api-gateway/node_modules
+
+#USER-MICROSERVICE
+./user-service/dist
+./user-service/build
+./user-service/.env
+./user-service/node_modules
