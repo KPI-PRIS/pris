@@ -4,10 +4,11 @@
   "description": "This is app for football project",
   "scripts": {
     "start:all:app": "concurrently -k \"npm run start:all:microservices\" \"npm run start:gateway\" \"npm run start:client\"",
-    "start:all:microservices": "concurrently \"npm run start:user-microservice\"",
+    "start:all:microservices": "concurrently \"npm run start:user-microservice\" \"npm run start:team-microservice\"",
     "start:gateway": "cd api-gateway && npm run start",
     "start:client": "cd client && npm run dev",
     "start:user-microservice": "cd user-service && npm run start",
+    "start:team-microservice": "cd team-manager && npm run start",
     "npm:all:install": "concurrently \"npm run npm:install:front\" \"npm run npm:install:gateway\" \"npm run npm:install:user-microservice\"",
     "npm:install:front": "cd client && npm install",
     "npm:install:gateway": "cd api-gateway && npm install",
