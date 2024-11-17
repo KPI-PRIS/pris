@@ -1,6 +1,7 @@
 import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
 import UsersPage from "./pages/user/UsersPage.tsx";
 import MainPage from "./pages/MainPage.tsx";
+import TeamsPage from "./pages/team/TeamPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <UsersPage/>
-            }
+            },
+            {
+                path: 'teams',
+                element: <TeamsPage/>
+            },
         ]
     },
 ])
