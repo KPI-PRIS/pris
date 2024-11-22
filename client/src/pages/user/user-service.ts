@@ -6,4 +6,4 @@ export interface User {
 }
 
 export const getUsers =
-    () => axios.get('http://localhost:3000').then(res => res.data)
+    () => axios.get('http://localhost:3000/user/all').then(res => res.data)
