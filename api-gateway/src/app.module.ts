@@ -1,8 +1,10 @@
-import {Module} from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
 import {AppController} from './app.controller';
 import {ClientsModule, Transport} from "@nestjs/microservices";
 import {TeamController} from './team/team.controller';
 import {UserController} from "./user/user.controller";
+import {LoggingInterceptor} from "./logger/LoggingInterceptor";
+import {RequestLoggingMiddleware} from "./logger/RequestLoggingMiddleware";
 
 @Module({
     imports: [ClientsModule.register([
@@ -22,6 +24,12 @@ import {UserController} from "./user/user.controller";
         },
     ])],
     controllers: [AppController, UserController, TeamController],
+    providers: [LoggingInterceptor],
 })
-export class AppModule {
+export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+            .apply(RequestLoggingMiddleware)
+            .forRoutes('*');
+    }
 }
