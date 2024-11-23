@@ -2,8 +2,10 @@ import {Controller} from '@nestjs/common';
 import {UserService} from './user.service';
 import {MessagePattern} from "@nestjs/microservices";
 import {IUpdateParamsById, UserRepository} from "./interfaces/UserRepository";
-import {Prisma} from "@prisma/client";
 import {IUser} from "./interfaces/IUser";
+import {IUserLogin} from "./interfaces/IUserLogin";
+import {IUserCreateDto} from "./interfaces/IUserCreateDto";
+import CustomError from "./interfaces/IError";
 
 
 @Controller('/users')
@@ -12,7 +14,7 @@ export class UserController implements UserRepository {
     }
 
     @MessagePattern('user_create')
-    create(data: Prisma.UserCreateInput): Promise<IUser> {
+    create(data: IUserCreateDto): Promise<IUser | CustomError> {
         return this.userService.create(data);
     }
 
@@ -27,8 +29,8 @@ export class UserController implements UserRepository {
     }
 
     @MessagePattern('user_find_by_credentials')
-    findOneByCredentials(email: string, password: string): Promise<IUser> {
-        return this.userService.findOneByCredentials(email, password);
+    findOneByCredentials(data: IUserLogin): Promise<IUser | CustomError> {
+        return this.userService.findOneByCredentials(data);
     }
 
     @MessagePattern('user_find_by_id')

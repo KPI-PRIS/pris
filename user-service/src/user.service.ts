@@ -1,9 +1,11 @@
-import {BadRequestException, Injectable} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {PrismaService} from "./prisma.service";
 import {IUpdateParamsById, UserRepository} from './interfaces/UserRepository'
-import {Prisma} from "@prisma/client";
 import {IUser} from "./interfaces/IUser";
 import * as bcrypt from 'bcrypt';
+import {IUserLogin} from "./interfaces/IUserLogin";
+import {IUserCreateDto} from "./interfaces/IUserCreateDto";
+import CustomError from "./interfaces/IError";
 
 @Injectable()
 export class UserService implements UserRepository {
@@ -16,19 +18,19 @@ export class UserService implements UserRepository {
         return this.prisma.user.findMany();
     }
 
-    async findOneByCredentials(email: string, password: string): Promise<IUser> {
+    async findOneByCredentials({email, password}: IUserLogin): Promise<IUser | CustomError> {
         const user: IUser = await this.prisma.user.findUnique({
             where: {
                 email
             }
         });
         if (!user) {
-            throw new BadRequestException('Not correct email or password')
+            return new CustomError('Не правильна пошта або пароль', 401)
         }
         const isEqualsPassword: boolean = await bcrypt.compare(password, user.password);
 
         if (!isEqualsPassword) {
-            throw new BadRequestException('Not correct email or password')
+            return new CustomError('Не правильна пошта або пароль', 401)
         }
 
         return user;
@@ -39,7 +41,11 @@ export class UserService implements UserRepository {
     }
 
 
-    async create(data: Prisma.UserCreateInput): Promise<IUser> {
+    async create(data: IUserCreateDto): Promise<IUser | CustomError> {
+        const user: IUser = await this.prisma.user.findUnique({where: {email: data.email}})
+        if (user) {
+            return new CustomError("Вже існує акаунт із такою поштою", 409)
+        }
         const hashPassword: string = await bcrypt.hash(data.password, this.saltOrRounds)
         return this.prisma.user.create({data: {password: hashPassword, ...data}})
     }
