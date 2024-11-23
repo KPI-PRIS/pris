@@ -1,10 +1,14 @@
 import FormTemplate from "../../../components/form/FormTemplate.tsx";
 import {initialValues, registrationFields, RegistrationSchema, RegistrationValues} from "./registrationPageConfig.ts";
+import {useMutation} from "react-query";
+import {actions, postRegistration} from "./actions.ts";
+
 
 export default function RegistrationPage() {
+    const {mutate, isLoading} = useMutation(postRegistration, actions);
     const handleSubmit = (values: RegistrationValues) => {
         console.log("Registration form values:", values);
-        alert("User registered successfully!");
+        mutate(values);
     };
 
     return (
@@ -14,7 +18,8 @@ export default function RegistrationPage() {
             initialValues={initialValues}
             validationSchema={RegistrationSchema}
             onSubmit={handleSubmit}
-            submitText="Зареєструватись"
+            isLoading={isLoading}
+            submitText={isLoading ? "Завантаження..." :"Зареєструватись"}
             footerLink={{text: "Вже маєте акаунт? Увійти", to: "/login"}}
         />
     );
