@@ -1,15 +1,45 @@
 import {Controller} from '@nestjs/common';
-import {User, UserService} from './user.service';
+import {UserService} from './user.service';
 import {MessagePattern} from "@nestjs/microservices";
+import {IUpdateParamsById, UserRepository} from "./interfaces/UserRepository";
+import {IUser} from "./interfaces/IUser";
+import {IUserLogin} from "./interfaces/IUserLogin";
+import {IUserCreateDto} from "./interfaces/IUserCreateDto";
+import CustomError from "./interfaces/IError";
 
 
 @Controller('/users')
-export class UserController {
-    constructor(private readonly appService: UserService) {
+export class UserController implements UserRepository {
+    constructor(private readonly userService: UserService) {
     }
 
-    @MessagePattern('get_users')
-    getUsers(): User[] {
-        return this.appService.getUsers();
+    @MessagePattern('user_create')
+    create(data: IUserCreateDto): Promise<IUser | CustomError> {
+        return this.userService.create(data);
+    }
+
+    @MessagePattern('user_delete')
+    deleteById(id: string): Promise<IUser> {
+        return this.userService.deleteById(id);
+    }
+
+    @MessagePattern('user_find_all')
+    findAll(): Promise<IUser[]> {
+        return this.userService.findAll();
+    }
+
+    @MessagePattern('user_find_by_credentials')
+    findOneByCredentials(data: IUserLogin): Promise<IUser | CustomError> {
+        return this.userService.findOneByCredentials(data);
+    }
+
+    @MessagePattern('user_find_by_id')
+    findOneById(id: string): Promise<IUser> {
+        return this.userService.findOneById(id);
+    }
+
+    @MessagePattern('user_update')
+    updateById(params: IUpdateParamsById): Promise<IUser> {
+        return this.userService.updateById(params);
     }
 }
