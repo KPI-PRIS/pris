@@ -8,4 +8,4 @@ export interface Team {
 }
 
 export const getTeams =
-    () => axios.get('http://localhost:3000/team').then(res => res.data)
+    () => axios.get('/team').then(res => res.data)
