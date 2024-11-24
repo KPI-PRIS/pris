@@ -5,7 +5,8 @@ import CookieService from "../../utils/CookieService.ts";
 import {AxiosError} from "axios";
 import {getErrorMessage} from "../../utils/utils.ts";
 import {jwtDecode} from "jwt-decode";
-import {AppDispatch, setUser, User} from "../../store/slices/userSlice.ts";
+import {setUser, User} from "../../store/slices/userSlice.ts";
+import {AppDispatch} from "../../store/store.ts";
 
 interface Actions {
     onSuccess: (data: IAuthResponse) => void;

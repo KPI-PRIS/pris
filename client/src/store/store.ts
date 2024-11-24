@@ -11,3 +11,4 @@ export const store = configureStore<StoreState>({
         user: userReducer,
     },
 });
+export type AppDispatch = typeof store.dispatch;

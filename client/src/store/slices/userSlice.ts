@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {store} from "../store.ts";
 import {jwtDecode} from "jwt-decode";
 import CookieService from "../../utils/CookieService.ts";
 
@@ -37,4 +36,3 @@ const userSlice = createSlice({
 
 export const {setUser, clearUser} = userSlice.actions;
 export default userSlice.reducer;
-export type AppDispatch = typeof store.dispatch;
