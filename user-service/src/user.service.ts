@@ -47,8 +47,7 @@ export class UserService implements UserRepository {
             return new CustomError("Вже існує акаунт із такою поштою", 409)
         }
         const hashPassword: string = await bcrypt.hash(data.password, this.saltOrRounds)
-        const newData = {...data, password: hashPassword};
-        return this.prisma.user.create({data: newData})
+        return this.prisma.user.create({data: {...data, password: hashPassword}})
     }
 
     async updateById({id, data}: IUpdateParamsById): Promise<IUser> {
