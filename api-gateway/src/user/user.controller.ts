@@ -3,23 +3,12 @@ import {ClientProxy} from "@nestjs/microservices";
 import {IUpdateParamsById} from '../../../user-service/src/interfaces/UserRepository'
 import {IUser} from "../../../user-service/src/interfaces/IUser";
 import {Observable} from "rxjs";
-import {IUserLogin} from "../../../user-service/src/interfaces/IUserLogin";
 import {IUserCreateDto} from "../../../user-service/src/interfaces/IUserCreateDto";
 import CustomError from "../../../user-service/src/interfaces/IError";
 
 @Controller('user')
 export class UserController {
     constructor(@Inject('USER_SERVICE') private readonly user_microservice: ClientProxy) {
-    }
-
-    @Post('login')
-    login(@Body() data: IUserLogin): Observable<IUser | CustomError> {
-        return this.user_microservice.send<IUser | CustomError>('user_find_by_credentials', data);
-    }
-
-    @Post('registration')
-    registration(@Body() data: IUserCreateDto): Observable<IUser | CustomError> {
-        return this.user_microservice.send<IUser | CustomError>('user_create', data);
     }
 
     @Post('create')
