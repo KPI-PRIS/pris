@@ -33,7 +33,7 @@ const FormTemplate: FC<FormTemplateProps> = ({
                                                  footerLink,
                                              }) => {
     return (
-        <CenterBox classCard="w-1/3 mt-10">
+        <CenterBox classCard="lg:w-1/2 w-full mt-10">
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({errors, touched}) => (
                     <Form>

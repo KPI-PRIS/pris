@@ -13,3 +13,24 @@ export function getErrorMessage(e: AxiosError, defaultError: string = 'Неві�
 
     return defaultError;
 }
+
+export function formatDateToUkrainian(dateString: string): string {
+    const months = [
+        "січня",
+        "лютого",
+        "березня",
+        "квітня",
+        "травня",
+        "червня",
+        "липня",
+        "серпня",
+        "вересня",
+        "жовтня",
+        "листопада",
+        "грудня"
+    ];
+
+    const [year, month, day] = dateString.split("-").map(Number);
+
+    return `${day} ${months[month - 1]} ${year}`;
+}

@@ -4,9 +4,10 @@ import {RequestLoggingMiddleware} from "./logger/RequestLoggingMiddleware";
 import {AuthModule} from './auth/auth.module';
 import {UserModule} from "./user/user.module";
 import {TeamModule} from "./team/team.module";
+import { MatchModule } from './match/match.module';
 
 @Module({
-    imports: [AuthModule, UserModule, TeamModule],
+    imports: [AuthModule, UserModule, TeamModule, MatchModule],
     providers: [LoggingInterceptor],
 })
 export class AppModule implements NestModule {

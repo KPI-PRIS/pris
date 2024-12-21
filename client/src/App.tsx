@@ -6,6 +6,7 @@ import RegistrationPage from "./pages/auth/registration/RegistrationPage.tsx";
 import RootLayout from "./pages/RootLayout.tsx";
 import LoginPage from "./pages/auth/login/LoginPage.tsx";
 import MatchesPage from "./pages/matches/MatchesPage.tsx";
+import MatchPage from "./pages/matches/MatchPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                 path: '/matches',
                 element: <MatchesPage/>
             },
+            {
+                path: '/match/:id',
+                element: <MatchPage/>
+            }
         ]
     },
 ])
