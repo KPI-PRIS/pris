@@ -26,14 +26,15 @@ export default function MatchesPage() {
                 <div className="flex flex-col items-center">
                     {data.matches.map((match: Match) => <MatchShortInfo key={match.id} match={match}/>)}
                 </div>
-                <Pagination isCompact
-                            showControls
-                            initialPage={currentPage}
-                            onChange={(page: number) => setCurrentPage(page)}
-                            className="flex justify-center"
-                            total={data.totalPages}
-                            color="warning"
-                />
+                {data.totalPages > 1 &&
+                    <Pagination isCompact
+                                showControls
+                                initialPage={currentPage}
+                                onChange={(page: number) => setCurrentPage(page)}
+                                className="flex justify-center"
+                                total={data.totalPages}
+                                color="warning"
+                    />}
             </>
         }
     </>)
