@@ -1,3 +1,5 @@
+import {IPagination} from "../../interfaces/IPagination.ts";
+
 export interface TicketAvailability {
     price: number;
     available: number;
@@ -21,9 +23,7 @@ export interface Match {
     opponent_logo: string;
 }
 
-export interface MatchPagination {
-    matches: Match[],
-    numberPage: number,
-    totalMatches: number,
-    totalPages: number,
+
+
+export interface MatchPagination extends IPagination<Match> {
 }

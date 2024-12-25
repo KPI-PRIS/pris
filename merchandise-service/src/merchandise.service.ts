@@ -21,6 +21,24 @@ export class MerchandiseService implements MerchRepository {
         return this.prisma.merchandise.findMany();
     }
 
+    async findAllByPage(numberPage: number) {
+        const totalMatches: number = await this.prisma.merchandise.count();
+        const itemsPerPage = 6;
+
+        const startIndex = (numberPage - 1) * itemsPerPage;
+        const totalPages = Math.ceil(totalMatches / itemsPerPage);
+        const merches = await this.prisma.merchandise.findMany({
+            skip: startIndex,
+            take: itemsPerPage,
+        });
+        return {
+            numberPage,
+            datas: merches,
+            totalDatas: totalMatches,
+            totalPages,
+        };
+    }
+
     findOneById(id: string): Promise<IMerch> {
         return this.prisma.merchandise.findFirst({where: {id}});
     }

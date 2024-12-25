@@ -1,8 +1,8 @@
-import { Controller } from '@nestjs/common';
-import { MerchandiseService } from './merchandise.service';
-import { IUpdateParamsById, MerchRepository } from "./interfaces/MerchRepository";
-import { IMerch } from "./interfaces/IMerch";
-import { MessagePattern } from "@nestjs/microservices";
+import {Controller} from '@nestjs/common';
+import {MerchandiseService} from './merchandise.service';
+import {IUpdateParamsById, MerchRepository} from "./interfaces/MerchRepository";
+import {IMerch} from "./interfaces/IMerch";
+import {MessagePattern} from "@nestjs/microservices";
 
 /**
  * Контролер для управління операціями з товарами (merchandise).
@@ -14,7 +14,8 @@ export class MerchandiseController implements MerchRepository {
      * Конструктор для ініціалізації служби товарів.
      * @param merchandiseService Сервіс для роботи з товарами.
      */
-    constructor(private readonly merchandiseService: MerchandiseService) {}
+    constructor(private readonly merchandiseService: MerchandiseService) {
+    }
 
     /**
      * Обробляє запит на створення нового товару.
@@ -49,6 +50,11 @@ export class MerchandiseController implements MerchRepository {
     @MessagePattern('merch_find_all')
     findAll(): Promise<IMerch[]> {
         return this.merchandiseService.findAll();
+    }
+
+    @MessagePattern('merch_find_all_by_page')
+    findAllByPage(page: string) {
+        return this.merchandiseService.findAllByPage(+page);
     }
 
     /**

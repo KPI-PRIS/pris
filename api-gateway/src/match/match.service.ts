@@ -23,8 +23,8 @@ export class MatchService {
 
         return {
             numberPage,
-            matches: listOfMatches.slice(startIndex, endIndex),
-            totalMatches,
+            datas: listOfMatches.slice(startIndex, endIndex),
+            totalDatas: totalMatches,
             totalPages,
         };
     }

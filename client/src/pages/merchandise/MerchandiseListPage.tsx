@@ -1,15 +1,15 @@
-import {useQuery} from "react-query";
-import {getMatches} from "./http.ts";
-import {Match, MatchPagination} from "./IMatch.ts";
-import MatchShortInfo from "../../components/match/MatchShortInfo.tsx";
-import {Pagination} from "@nextui-org/react";
 import {useEffect, useState} from "react";
+import {useQuery} from "react-query";
+import {getMerches} from "./http.ts";
+import {IMerch, IMerchPagination} from "./IMerch.ts";
+import {Pagination} from "@nextui-org/react";
+import MerchCard from "../../components/merch/MerchCard.tsx";
 
-export default function MatchesPage() {
+export default function MerchandiseListPage() {
     const [currentPage, setCurrentPage] = useState<number>(1)
-    const {data, isLoading, refetch} = useQuery<MatchPagination>({
-        queryKey: [`match-${currentPage}`],
-        queryFn: () => getMatches(currentPage)
+    const {data, isLoading, refetch} = useQuery<IMerchPagination>({
+        queryKey: [`merch-${currentPage}`],
+        queryFn: () => getMerches(currentPage)
     })
 
     useEffect(() => {
@@ -18,20 +18,20 @@ export default function MatchesPage() {
 
     return (<>
         <div className="text-5xl text-white p-5 bg-black text-center font-extrabold border-2 rounded-b-xl">
-            Матчи
+            Фан-шоп
         </div>
         {isLoading && <p>Вантаження даних</p>}
         {data &&
             <>
-                <div className="flex flex-col items-center">
-                    {data.datas.map((match: Match) => <MatchShortInfo key={match.id} match={match}/>)}
+                <div className="grid grid-cols-3 gap-4 mt-3">
+                    {data.datas.map((merch: IMerch) => <MerchCard key={merch.id} merch={merch}/>)}
                 </div>
                 {data.totalPages > 1 &&
                     <Pagination isCompact
                                 showControls
                                 initialPage={currentPage}
                                 onChange={(page: number) => setCurrentPage(page)}
-                                className="flex justify-center"
+                                className="flex justify-center mt-0.5"
                                 total={data.totalPages}
                                 color="warning"
                     />}

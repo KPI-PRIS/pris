@@ -24,6 +24,11 @@ export class MerchandiseController {
         return this.merch_microservice.send("merch_find_all", {});
     }
 
+    @Get('all/:page')
+    findAllByPage(@Param('page') page: string): Observable<IMerch[]> {
+        return this.merch_microservice.send("merch_find_all_by_page", page);
+    }
+
     @Get(':id')
     findOneById(@Param('id') id: string): Observable<IMerch> {
         return this.merch_microservice.send<IMerch>("merch_delete_by_id", id);

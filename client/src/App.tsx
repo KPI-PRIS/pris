@@ -7,6 +7,7 @@ import RootLayout from "./pages/RootLayout.tsx";
 import LoginPage from "./pages/auth/login/LoginPage.tsx";
 import MatchesPage from "./pages/matches/MatchesPage.tsx";
 import MatchPage from "./pages/matches/MatchPage.tsx";
+import MerchandiseListPage from "./pages/merchandise/MerchandiseListPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,15 @@ const router = createBrowserRouter([
             {
                 path: '/match/:id',
                 element: <MatchPage/>
-            }
+            },
+            {
+                path: '/merches',
+                element: <MerchandiseListPage/>
+            },
+            // {
+            //     path: '/merch/:id',
+            //     element: <MatchPage/>
+            // }
         ]
     },
 ])
