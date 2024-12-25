@@ -29,6 +29,7 @@ export default function MerchPage() {
                     alt="Card background"
                     className="h-96 rounded-xl"
                     src={merch.image_url}
+                    isZoomed
                 />
             </div>
             <div className="w-1/2 flex flex-col px-5">

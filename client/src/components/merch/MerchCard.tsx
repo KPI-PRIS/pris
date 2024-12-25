@@ -16,6 +16,7 @@ export default function MerchCard({merch}: MerchCardProps) {
                     onClick={() => navigation(`/merch/${merch.id}`)}
                     alt="Card background"
                     className=" rounded-xl"
+                    isZoomed
                     src={merch.image_url}
                     height={200}
                 />
