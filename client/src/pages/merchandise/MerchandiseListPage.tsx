@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useQuery} from "react-query";
 import {getMerches} from "./http.ts";
-import {IMerch, IMerchPagination} from "./IMerch.ts";
+import {IMerch, IMerchPagination} from "../../components/merch/IMerch.ts";
 import {Pagination} from "@nextui-org/react";
 import MerchCard from "../../components/merch/MerchCard.tsx";
 

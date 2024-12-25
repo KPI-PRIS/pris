@@ -31,7 +31,7 @@ export class MerchandiseController {
 
     @Get(':id')
     findOneById(@Param('id') id: string): Observable<IMerch> {
-        return this.merch_microservice.send<IMerch>("merch_delete_by_id", id);
+        return this.merch_microservice.send<IMerch>("merch_find_one_by_id", id);
     }
 
     @Put('update')
