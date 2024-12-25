@@ -1,4 +1,4 @@
-import {Controller, Get, Inject} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Inject, Param, Post, Put} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
 import {IUpdateParamsById} from '../../../merchandise-service/src/interfaces/MerchRepository'
 import {IMerch} from "../../../merchandise-service/src/interfaces/IMerch";
@@ -9,12 +9,14 @@ export class MerchandiseController {
     constructor(@Inject('MERCH_SERVICE') private readonly merch_microservice: ClientProxy) {
     }
 
-    create(data: IMerch): Promise<IMerch> {
-        return Promise.resolve(undefined);
+    @Post('create')
+    create(@Body() data: IMerch): Observable<IMerch> {
+        return this.merch_microservice.send<IMerch>("merch_create", data);
     }
 
-    deleteById(id: string): Promise<IMerch> {
-        return Promise.resolve(undefined);
+    @Delete(':id')
+    deleteById(@Param('id') id: string): Observable<IMerch> {
+        return this.merch_microservice.send<IMerch>("merch_delete_by_id", id);
     }
 
     @Get('all')
@@ -22,12 +24,14 @@ export class MerchandiseController {
         return this.merch_microservice.send("merch_find_all", {});
     }
 
-    findOneById(id: string): Promise<IMerch> {
-        return Promise.resolve(undefined);
+    @Get(':id')
+    findOneById(@Param('id') id: string): Observable<IMerch> {
+        return this.merch_microservice.send<IMerch>("merch_delete_by_id", id);
     }
 
-    updateById(params: IUpdateParamsById): Promise<IMerch> {
-        return Promise.resolve(undefined);
+    @Put('update')
+    updateById(@Body() params: IUpdateParamsById): Observable<IMerch> {
+        return this.merch_microservice.send<IMerch>("merch_delete_by_id", params);
     }
 
 }
