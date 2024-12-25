@@ -6,14 +6,12 @@ import RegistrationPage from "./pages/auth/registration/RegistrationPage.tsx";
 import RootLayout from "./pages/RootLayout.tsx";
 import LoginPage from "./pages/auth/login/LoginPage.tsx";
 import MatchesPage from "./pages/matches/MatchesPage.tsx";
-import {ErrorCodes} from "./pages/errors/ErrorMessages.ts";
-import ErrorPage from "./pages/errors/ErrorPage.tsx";
+import MatchPage from "./pages/matches/MatchPage.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
-        errorElement: <ErrorPage errorCode={ErrorCodes.NotFound}/>,
         children: [
             {
                 index: true,
@@ -39,6 +37,10 @@ const router = createBrowserRouter([
                 path: '/matches',
                 element: <MatchesPage/>
             },
+            {
+                path: '/match/:id',
+                element: <MatchPage/>
+            }
         ]
     },
 ])
