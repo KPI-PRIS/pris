@@ -22,8 +22,8 @@ export default function MerchCard({merch}: MerchCardProps) {
             <CardFooter className="flex justify-between">
                 <p>{merch.price} грн</p>
                 <Button
-                    variant="shadow"
-                    color="success"
+                    variant="bordered"
+                    color="primary"
                 >
                     Купити
                 </Button>
