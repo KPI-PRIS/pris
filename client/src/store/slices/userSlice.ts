@@ -16,10 +16,8 @@ export interface User {
 export type UserState = User | null;
 
 const token = CookieService.getToken();
-const decodedUser: User | null = token ? jwtDecode<User>(token) : null;
-
-console.log("decoded", decodedUser)
-const initialState: User | null = decodedUser;
+const decodedUser: UserState = token ? jwtDecode<User>(token) : null;
+const initialState: UserState = decodedUser;
 
 const userSlice = createSlice({
     name: 'user',

@@ -27,9 +27,9 @@ export default function MerchCard({merch}: MerchCardProps) {
             <CardFooter className="flex justify-between" onClick={() => navigation(`/merch/${merch.id}`)}>
                 <p>{merch.price} грн</p>
                 <Button
-                    variant="bordered"
+                    variant="ghost"
                     color="primary"
-                    onClick={() => navigation(`/merch/${merch.id}`)}
+                    onPress={() => navigation(`/merch/${merch.id}`)}
                 >
                     Купити
                 </Button>

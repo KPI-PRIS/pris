@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
-import {NavbarContent} from "@nextui-org/react";
+import {Button, NavbarContent} from "@nextui-org/react";
+import Bucket from "../../svgs/Bucket.tsx";
 
 export default function ContentHeader() {
     return (
@@ -13,6 +14,7 @@ export default function ContentHeader() {
             <Link to="/merches">
                 Фан-шоп
             </Link>
+
         </NavbarContent>
     )
 }

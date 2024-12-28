@@ -34,3 +34,7 @@ export function formatDateToUkrainian(dateString: string): string {
 
     return `${day} ${months[month - 1]} ${year}`;
 }
+
+export function prettyPrice(price: number) {
+    return new Intl.NumberFormat('uk-UA').format(price);
+}
