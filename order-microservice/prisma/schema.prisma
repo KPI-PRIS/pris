@@ -13,6 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Enum для статусів замовлення
+enum Status {
+  PENDING // Очікується
+  COMPLETED // Завершене
+  CANCELLED // Скасоване
+  SHIPPED // Відправлене
+  DELIVERED // Доставлене
+}
+
 model Order {
   id           String   @id @default(uuid()) @map("_id")
   user_id      String?
@@ -20,6 +29,7 @@ model Order {
   tickets      Ticket[] @relation("OrderTickets") // Зв'язок з Ticket
   totalPrice   Int // Загальна ціна замовлення
   quantity     Int // Кількість товарів у замовленні
+  status       Status   @default(PENDING)
 
   @@map("orders")
 }

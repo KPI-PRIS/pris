@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import CookieService from "../../utils/CookieService.ts";
 
 export interface Item {
     id: string;
@@ -16,7 +16,7 @@ export interface Cart {
 }
 
 const CART_KEY = "Cart_key"
-const existCart = Cookies.get(CART_KEY);
+const existCart = CookieService.getCookie(CART_KEY);
 const defaultValue: Cart = {totalPrice: 0, total: 0, items: []};
 const initialState: Cart = existCart ? JSON.parse(existCart) : defaultValue;
 
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
                 , {total: 0, totalPrice: 0})
             state.total = total;
             state.totalPrice = totalPrice;
-            Cookies.set(CART_KEY, JSON.stringify(state))
+            CookieService.setCookie(CART_KEY, JSON.stringify(state))
         },
         removeItem(state: Cart, action: PayloadAction<Item>) {
             const removeItem: Item = action.payload;
@@ -68,10 +68,14 @@ const cartSlice = createSlice({
                 , {total: 0, totalPrice: 0})
             state.total = total;
             state.totalPrice = totalPrice;
-            Cookies.set(CART_KEY, JSON.stringify(state))
+            CookieService.setCookie(CART_KEY, JSON.stringify(state))
+        },
+        clearCart() {
+            CookieService.deleteCookie(CART_KEY)
+            return defaultValue;
         }
     }
 })
 
-export const {addItem, removeItem} = cartSlice.actions;
+export const {addItem, removeItem, clearCart} = cartSlice.actions;
 export default cartSlice.reducer;
