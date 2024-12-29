@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import userReducer, {UserState} from './slices/userSlice';
-import cartReducer, {Cart} from "./slices/cartSlice.ts";
+import cartReducer, {Cart} from "./slices/cart/cartSlice.ts";
 
 export interface StoreState {
     user: UserState,

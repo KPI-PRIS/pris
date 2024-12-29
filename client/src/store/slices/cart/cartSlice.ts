@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import CookieService from "../../utils/CookieService.ts";
+import CookieService from "../../../utils/CookieService.ts";
+import {updateCartTotals} from "./update.ts";
 
 export interface Item {
     id: string;
@@ -15,7 +16,7 @@ export interface Cart {
     items: Item[]
 }
 
-const CART_KEY = "Cart_key"
+export const CART_KEY = "Cart_key"
 const existCart = CookieService.getCookie(CART_KEY);
 const defaultValue: Cart = {totalPrice: 0, total: 0, items: []};
 const initialState: Cart = existCart ? JSON.parse(existCart) : defaultValue;
@@ -36,15 +37,7 @@ const cartSlice = createSlice({
                 state.items[itemIndex].total += addItems.total;
             }
 
-            const {total, totalPrice} = state.items.reduce(
-                (previousValue, currentValue) => ({
-                    total: previousValue.total + currentValue.total,
-                    totalPrice: previousValue.totalPrice + (currentValue.price * currentValue.total)
-                })
-                , {total: 0, totalPrice: 0})
-            state.total = total;
-            state.totalPrice = totalPrice;
-            CookieService.setCookie(CART_KEY, JSON.stringify(state))
+            updateCartTotals(state)
         },
         removeItem(state: Cart, action: PayloadAction<Item>) {
             const removeItem: Item = action.payload;
@@ -60,15 +53,7 @@ const cartSlice = createSlice({
                 state.items = state.items.filter(i => i.id !== removeItem.id)
             }
 
-            const {total, totalPrice} = state.items.reduce(
-                (previousValue, currentValue) => ({
-                    total: previousValue.total + currentValue.total,
-                    totalPrice: previousValue.totalPrice + (currentValue.price * currentValue.total)
-                })
-                , {total: 0, totalPrice: 0})
-            state.total = total;
-            state.totalPrice = totalPrice;
-            CookieService.setCookie(CART_KEY, JSON.stringify(state))
+            updateCartTotals(state)
         },
         clearCart() {
             CookieService.deleteCookie(CART_KEY)
@@ -76,6 +61,7 @@ const cartSlice = createSlice({
         }
     }
 })
+
 
 export const {addItem, removeItem, clearCart} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,4 +1,4 @@
-import {addItem, Item, removeItem} from "../../store/slices/cartSlice.ts";
+import {addItem, Item, removeItem} from "../../store/slices/cart/cartSlice.ts";
 import {Image} from "@nextui-org/react";
 import {useDispatch} from "react-redux";
 import {prettyPrice} from "../../utils/utils.ts";

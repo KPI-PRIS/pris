@@ -1,4 +1,4 @@
-import {Cart, clearCart} from "../../store/slices/cartSlice.ts";
+import {Cart, clearCart} from "../../store/slices/cart/cartSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import CenterBox from "../../components/CenterBox.tsx";
@@ -15,6 +15,7 @@ export default function OrderPage() {
     const navigate = useNavigate();
     const {isLoading, mutateAsync: doPay} = useMutation(() => createOrder(cart))
     const dispatch = useDispatch();
+
     useEffect(() => {
         if (cart.total < 1) {
             navigate('/merches')

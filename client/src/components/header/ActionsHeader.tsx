@@ -4,7 +4,7 @@ import {clearUser, User} from "../../store/slices/userSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import Bucket from "../../svgs/Bucket.tsx";
-import {Cart} from "../../store/slices/cartSlice.ts";
+import {Cart} from "../../store/slices/cart/cartSlice.ts";
 import CartListDrawer from "../cart/CartListDrawer.tsx";
 
 export default function ActionsHeader() {

@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import {Button, Drawer, DrawerBody, DrawerContent, DrawerHeader} from "@nextui-org/react";
 import {useNavigate} from "react-router";
-import {Item} from "../../store/slices/cartSlice.ts";
+import {Item} from "../../store/slices/cart/cartSlice.ts";
 import CartInfoItem from "./CartInfoItem.tsx";
 import {prettyPrice} from "../../utils/utils.ts";
 

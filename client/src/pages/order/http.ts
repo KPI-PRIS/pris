@@ -1,4 +1,4 @@
-import {Cart} from "../../store/slices/cartSlice.ts";
+import {Cart} from "../../store/slices/cart/cartSlice.ts";
 import axios from "axios";
 
 export async function createOrder(cart: Cart) {

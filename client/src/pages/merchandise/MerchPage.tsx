@@ -6,7 +6,7 @@ import {Button, Card, Image, Input, Spinner} from "@nextui-org/react";
 import {ChangeEvent, useState} from "react";
 import Bucket from "../../svgs/Bucket.tsx";
 import {useDispatch} from "react-redux";
-import {addItem, Item} from "../../store/slices/cartSlice.ts";
+import {addItem, Item} from "../../store/slices/cart/cartSlice.ts";
 
 export default function MerchPage() {
     const {id} = useParams()
