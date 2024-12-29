@@ -9,6 +9,7 @@ import MatchesPage from "./pages/matches/MatchesPage.tsx";
 import MatchPage from "./pages/matches/MatchPage.tsx";
 import MerchandiseListPage from "./pages/merchandise/MerchandiseListPage.tsx";
 import MerchPage from "./pages/merchandise/MerchPage.tsx";
+import OrderPage from "./pages/order/OrderPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: '/merch/:id',
                 element: <MerchPage/>
+            },
+            {
+                path: '/order',
+                element: <OrderPage/>
             }
         ]
     },

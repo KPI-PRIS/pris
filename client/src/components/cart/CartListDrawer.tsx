@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
-import {Button, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader} from "@nextui-org/react";
+import {Button, Drawer, DrawerBody, DrawerContent, DrawerHeader} from "@nextui-org/react";
 import {useNavigate} from "react-router";
 import {Item} from "../../store/slices/cartSlice.ts";
 import CartInfoItem from "./CartInfoItem.tsx";
@@ -15,7 +15,8 @@ export default function CartListDrawer({isOpen, onOpenChange}: CartListDrawerPro
     const items = useSelector((state: StoreState) => state.cart);
     const nav = useNavigate();
 
-    function handleBuy() {
+    function handleBuy(close: () => void) {
+        close()
         nav('/order')
     }
 
@@ -41,7 +42,7 @@ export default function CartListDrawer({isOpen, onOpenChange}: CartListDrawerPro
                                             </p>
                                         </div>
                                         <hr className="mt-5"/>
-                                        <Button color="success" fullWidth onPress={handleBuy}>
+                                        <Button color="success" fullWidth onPress={() => handleBuy(onClose)}>
                                             Купити
                                         </Button>
                                         <Button color="danger" variant="light" onPress={onClose}>
@@ -51,9 +52,6 @@ export default function CartListDrawer({isOpen, onOpenChange}: CartListDrawerPro
                                 </>
                             }
                         </DrawerBody>
-                        <DrawerFooter>
-
-                        </DrawerFooter>
                     </>
                 )}
             </DrawerContent>

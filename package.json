@@ -4,18 +4,22 @@
   "description": "This is app for football project",
   "scripts": {
     "start:all:app": "concurrently -k \"npm run start:all:microservices\" \"npm run start:gateway\" \"npm run start:client\"",
-    "start:all:microservices": "concurrently \"npm run start:user-microservice\" \"npm run start:team-microservice\" \"npm run start:merch-microservice\"",
+    "start:all:microservices": "concurrently \"npm run start:user-microservice\" \"npm run start:team-microservice\" \"npm run start:merch-microservice\" \"npm run start:payment-microservice\" \"npm run start:order-microservice\"",
     "start:gateway": "cd api-gateway && npm run build && npm run start",
     "start:client": "cd client && npm run dev",
     "start:user-microservice": "cd user-service && npm run start",
     "start:team-microservice": "cd team-manager && npm run start",
     "start:merch-microservice": "cd merchandise-service && npm run start",
-    "npm:all:install": "npm install && npm run npm:install:front && npm run npm:install:gateway && npm run npm:install:user-microservice && npm run npm:install:team-microservice && npm:install:merch-microservice",
+    "start:payment-microservice": "cd payment-service && npm run start",
+    "start:order-microservice": "cd order-microservice && npm run start",
+    "npm:all:install": "npm install && npm run npm:install:front && npm run npm:install:gateway && npm run npm:install:user-microservice && npm run npm:install:team-microservice && npm:install:merch-microservice && npm:install:payment-microservice && npm:install:order-microservice",
     "npm:install:front": "cd client && npm install",
     "npm:install:gateway": "cd api-gateway && npm install",
     "npm:install:user-microservice": "cd user-service && npm install",
     "npm:install:team-microservice": "cd team-manager && npm install",
-    "npm:install:merch-microservice": "cd merchandise-service && npm install"
+    "npm:install:merch-microservice": "cd merchandise-service && npm install",
+    "npm:install:payment-microservice": "cd payment-service && npm install",
+    "npm:install:order-microservice": "cd order-microservice && npm install"
   },
   "private": true,
   "devDependencies": {

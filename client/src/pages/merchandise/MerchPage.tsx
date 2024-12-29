@@ -20,7 +20,7 @@ export default function MerchPage() {
 
     function changeCount(e: ChangeEvent<HTMLInputElement>) {
         const count: number = +e.target.value;
-        if (count < 1) {
+        if (count < 1 || (merch && merch.stockQuantity < count)) {
             return
         }
         setCountItem(count)

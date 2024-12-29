@@ -11,7 +11,7 @@ export default function MatchShortInfo({match}: MatchShortInfoProps) {
     const nav = useNavigate();
 
     return (
-        <Card className=" flex flex-row my-3 w-3/5  items-center p-3">
+        <Card className=" flex flex-row my-3 w-4/5  items-center p-3">
             <div className="w-1/4 flex-col">
                 <div className="flex flex-row justify-around items-center">
                     <Image src={match.home_team_logo} width={50}/>
@@ -33,7 +33,7 @@ export default function MatchShortInfo({match}: MatchShortInfoProps) {
                 <div>
                     <div> Кількість квитків: {match.count_of_tickets} </div>
                     <div className="flex justify-end">
-                        <Button color="success" onClick={() => nav(`/match/${match.id}`)}>
+                        <Button color="success" onPress={() => nav(`/match/${match.id}`)}>
                             Купити від {match.price_start_from} грн</Button>
                     </div>
                 </div>
