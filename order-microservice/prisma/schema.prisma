@@ -30,17 +30,19 @@ model Order {
   totalPrice   Int // Загальна ціна замовлення
   quantity     Int // Кількість товарів у замовленні
   status       Status   @default(PENDING)
+  createdAt    DateTime @default(now()) // Дата створення замовлення
 
   @@map("orders")
 }
 
 model Item {
-  id      String  @id @default(uuid()) @map("_id")
-  name    String // Назва товару
-  price   Float // Ціна товару
-  total   Int // Загальна кількість
-  orderId String? // Поле для зв'язку з таблицею Order
-  order   Order?  @relation("OrderItems", fields: [orderId], references: [id])
+  id        String  @id @default(uuid()) @map("_id")
+  name      String // Назва товару
+  price     Float // Ціна товару
+  total     Int // Загальна кількість
+  image_url String
+  orderId   String? // Поле для зв'язку з таблицею Order
+  order     Order?  @relation("OrderItems", fields: [orderId], references: [id])
 
   @@map("items")
 }

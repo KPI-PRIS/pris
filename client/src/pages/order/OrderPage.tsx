@@ -9,11 +9,13 @@ import {useNavigate} from "react-router";
 import {useMutation} from "react-query";
 import {createOrder} from "./http.ts";
 import CartListInfo from "../../components/cart/CartListInfo.tsx";
+import {UserState} from "../../store/slices/userSlice.ts";
 
 export default function OrderPage() {
+    const user: UserState = useSelector((state: StoreState) => state.user)
     const cart: Cart = useSelector((state: StoreState) => state.cart);
     const navigate = useNavigate();
-    const {isLoading, mutateAsync: doPay} = useMutation(() => createOrder(cart))
+    const {isLoading, mutateAsync: doPay} = useMutation(() => createOrder(cart, user))
     const dispatch = useDispatch();
 
     useEffect(() => {

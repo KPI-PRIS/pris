@@ -14,6 +14,8 @@ export default function CustomActions({user}: { user: CustomUser }) {
         dispatch(clearUser())
     }
 
+    console.log(user.role)
+
     return (
         <Dropdown showArrow classNames={classDropDown} radius="sm">
             <DropdownTrigger>
@@ -33,9 +35,15 @@ export default function CustomActions({user}: { user: CustomUser }) {
                             name={user.name}
                         />
                     </DropdownItem>
-                    <DropdownItem key="own-profile">Особистий профіль</DropdownItem>
-                    <DropdownItem key="orders">Мої замовлення</DropdownItem>
-                    <DropdownItem key="new_statement" hidden={user.role === "ADMIN"}>Подати заяву</DropdownItem>
+                    <DropdownItem key="own-profile" onPress={() => nav('/auth/profile')}>
+                        Особистий профіль
+                    </DropdownItem>
+                    <DropdownItem key="orders" onPress={() => nav('/auth/orders')}>
+                        Мої замовлення
+                    </DropdownItem>
+                    <DropdownItem key="new_statement" className={user.role === 'ADMIN' ? 'hidden' : ''}>
+                        Подати заяву
+                    </DropdownItem>
                 </DropdownSection>
                 <DropdownSection showDivider aria-label="Preferences" hidden={"FAN" === user.role}>
                     {getListActionsByRole(user.role).map((action: Action) =>

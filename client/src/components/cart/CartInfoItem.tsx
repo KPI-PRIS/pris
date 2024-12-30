@@ -3,7 +3,7 @@ import {Image} from "@nextui-org/react";
 import {useDispatch} from "react-redux";
 import {prettyPrice} from "../../utils/utils.ts";
 
-export default function CartInfoItem({item}: { item: Item }) {
+export default function CartInfoItem({item, showIncrement = true}: { item: Item, showIncrement?: boolean }) {
     const dispatch = useDispatch();
 
     function handleIncreaseItem() {
@@ -23,10 +23,10 @@ export default function CartInfoItem({item}: { item: Item }) {
                 <div className="flex flex-row space-x-4">
                     <p>Кількість: </p>
                     <p onClick={handleDecreaseItem}
-                       className="border-1 rounded-full border-red-400 px-2 hover:cursor-pointer hover:bg-red-400 select-none">-</p>
+                       className={`border-1 rounded-full border-red-400 px-2 hover:cursor-pointer hover:bg-red-400 select-none ${showIncrement ? '' : 'hidden'}`}>-</p>
                     <p className="">{item.total}</p>
                     <p onClick={handleIncreaseItem}
-                       className="border-1 rounded-full border-green-400 px-2 hover:cursor-pointer hover:bg-green-400 select-none">+</p>
+                       className={`border-1 rounded-full border-green-400 px-2 hover:cursor-pointer hover:bg-green-400 select-none ${showIncrement ? '' : 'hidden'}`}>+</p>
                 </div>
             </div>
         </div>

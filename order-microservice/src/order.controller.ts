@@ -18,4 +18,9 @@ export class OrderController {
     getOrderById(id: string) {
         return this.appService.getOrderById(id)
     }
+
+    @MessagePattern('order.get_items_by_user_id')
+    getOrdersByUserId(id: string) {
+        return this.appService.getOrderByUserId(id)
+    }
 }

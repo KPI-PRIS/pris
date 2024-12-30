@@ -25,7 +25,8 @@ export class LoggingInterceptor implements NestInterceptor {
 
         return next.handle().pipe(
             tap((data) => {
-                console.log(`- Відповідь сервера: `, data);
+                console.log(`- Відповідь сервера: `);
+                console.dir(data, {depth: null, colors: true})
                 console.log(`- Час обробки запиту: ${Date.now() - start} мс`);
                 if (data._code && data._code >= 400) {
                     this.throwError(data)

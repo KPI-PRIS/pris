@@ -5,7 +5,7 @@ import CookieService from "../../utils/CookieService.ts";
 export type UserRoles = "ADMIN" | "FAN" | "COACH" | "PLAYER";
 
 export interface CustomUser {
-    id: number;
+    id: string;
     name: string;
     email: string;
     phone: string;

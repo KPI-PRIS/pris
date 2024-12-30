@@ -13,6 +13,18 @@ export class OrderService {
         return this.prisma.order.findUnique({where: {id}});
     }
 
+    getOrderByUserId(user_id: string) {
+        return this.prisma.order.findMany({
+            where: {user_id}, include: {
+                merchandises: true,
+                tickets: true
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        })
+    }
+
     async createOrder(order: Order) {
         return this.prisma.order.create({
             data: {
@@ -24,7 +36,8 @@ export class OrderService {
                     create: order.merchandises.map(item => ({
                         name: item.name,
                         price: item.price,
-                        total: item.total
+                        total: item.total,
+                        image_url: item.image_url,
                     }))
                 },
                 tickets: {
@@ -36,7 +49,6 @@ export class OrderService {
                 }
             },
             include: {
-                // Включаємо в результат також мерчандайзи та квитки
                 merchandises: true,
                 tickets: true
             }

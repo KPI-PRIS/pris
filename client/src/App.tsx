@@ -10,6 +10,9 @@ import MatchPage from "./pages/matches/MatchPage.tsx";
 import MerchandiseListPage from "./pages/merchandise/MerchandiseListPage.tsx";
 import MerchPage from "./pages/merchandise/MerchPage.tsx";
 import OrderPage from "./pages/order/OrderPage.tsx";
+import AuthLayout from "./pages/AuthLayout.tsx";
+import ProfilePage from "./pages/profile/ProfilePage.tsx";
+import OrderPersonalListPage from "./pages/order/OrderPersonalListPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +22,20 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <MainPage/>
+            },
+            {
+                path: '/auth',
+                element: <AuthLayout/>,
+                children: [
+                    {
+                        path: 'profile',
+                        element: <ProfilePage/>
+                    },
+                    {
+                        path: 'orders',
+                        element: <OrderPersonalListPage/>
+                    }
+                ]
             },
             {
                 path: '/login',

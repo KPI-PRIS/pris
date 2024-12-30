@@ -1,4 +1,5 @@
 import {AxiosError} from "axios";
+import CookieService from "./CookieService.ts";
 
 interface ErrorResponse {
     message: string;
@@ -14,22 +15,22 @@ export function getErrorMessage(e: AxiosError, defaultError: string = 'Неві�
     return defaultError;
 }
 
-export function formatDateToUkrainian(dateString: string): string {
-    const months = [
-        "січня",
-        "лютого",
-        "березня",
-        "квітня",
-        "травня",
-        "червня",
-        "липня",
-        "серпня",
-        "вересня",
-        "жовтня",
-        "листопада",
-        "грудня"
-    ];
+const months = [
+    "січня",
+    "лютого",
+    "березня",
+    "квітня",
+    "травня",
+    "червня",
+    "липня",
+    "серпня",
+    "вересня",
+    "жовтня",
+    "листопада",
+    "грудня"
+];
 
+export function formatDateToUkrainian(dateString: string): string {
     const [year, month, day] = dateString.split("-").map(Number);
 
     return `${day} ${months[month - 1]} ${year}`;
@@ -51,4 +52,16 @@ export function getTranslateRole(role: string) {
         case "player":
             return "гравець"
     }
+}
+
+export const HEADER_AUTH = {
+    Authorization: `Bearer ${CookieService.getToken()}`
+}
+
+export function getTime(time: string): string {
+    const date = new Date(time);
+    const month = months[date.getMonth()]; // Отримуємо місяць словами
+    const day = date.getDate(); // День місяця
+    const year = date.getFullYear(); // Рік
+    return `${day} ${month} ${year}`
 }
