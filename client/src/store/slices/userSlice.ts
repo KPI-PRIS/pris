@@ -4,7 +4,7 @@ import CookieService from "../../utils/CookieService.ts";
 
 export type UserRoles = "ADMIN" | "FAN" | "COACH" | "PLAYER";
 
-export interface User {
+export interface CustomUser {
     id: number;
     name: string;
     email: string;
@@ -13,17 +13,18 @@ export interface User {
     role: UserRoles;
 }
 
-export type UserState = User | null;
+export type UserState = CustomUser | null;
 
 const token = CookieService.getToken();
-const decodedUser: UserState = token ? jwtDecode<User>(token) : null;
+const decodedUser: UserState = token ? jwtDecode<CustomUser>(token) : null;
+console.log(decodedUser)
 const initialState: UserState = decodedUser;
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser(_, action: PayloadAction<User>) {
+        setUser(_, action: PayloadAction<CustomUser>) {
             return action.payload;
         },
         clearUser() {

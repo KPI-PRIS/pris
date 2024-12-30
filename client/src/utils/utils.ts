@@ -38,3 +38,17 @@ export function formatDateToUkrainian(dateString: string): string {
 export function prettyPrice(price: number) {
     return new Intl.NumberFormat('uk-UA').format(price);
 }
+
+
+export function getTranslateRole(role: string) {
+    switch (role.toLowerCase()) {
+        case "admin":
+            return "адміністратор"
+        case "fan":
+            return "фанат"
+        case "coach":
+            return "тренер"
+        case "player":
+            return "гравець"
+    }
+}
