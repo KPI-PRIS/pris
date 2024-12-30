@@ -19,6 +19,14 @@ export default function ActionsHeader() {
 
     return (
         <NavbarContent justify="end">
+            <Badge color={cart.total > 0 ? "danger" : "default"}
+                   content={cart.total > 0 ? cart.total : ''}
+                   placement="top-left"
+            >
+                <Button variant="ghost" color="primary" isIconOnly className="p-1" onPress={onOpen} radius="lg">
+                    <Bucket/>
+                </Button>
+            </Badge>
             {!user && <>
                 <Link to="/login">Вхід</Link>
                 <Button as={Link} color="primary" to="/registration" variant="flat">
@@ -31,11 +39,6 @@ export default function ActionsHeader() {
                     Вийти
                 </Button>
             </>}
-            <Badge color="primary" content={cart.total}>
-                <Button variant="ghost" color="primary" onPress={onOpen}>
-                    <Bucket/>
-                </Button>
-            </Badge>
             <CartListDrawer isOpen={isOpen} onOpenChange={onOpenChange}/>
         </NavbarContent>
     )

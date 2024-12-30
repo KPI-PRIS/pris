@@ -2,9 +2,8 @@ import {useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import {Button, Drawer, DrawerBody, DrawerContent, DrawerHeader} from "@nextui-org/react";
 import {useNavigate} from "react-router";
-import {Item} from "../../store/slices/cart/cartSlice.ts";
-import CartInfoItem from "./CartInfoItem.tsx";
 import {prettyPrice} from "../../utils/utils.ts";
+import CartListInfo from "./CartListInfo.tsx";
 
 interface CartListDrawerProps {
     isOpen: boolean;
@@ -30,7 +29,7 @@ export default function CartListDrawer({isOpen, onOpenChange}: CartListDrawerPro
                             {items.total < 1 && <p className="flex justify-center">Кошик порожній</p>}
                             {items.total > 0 &&
                                 <>
-                                    {items.items.map((i: Item) => <CartInfoItem item={i}/>)}
+                                    <CartListInfo/>
                                     <div className="flex flex-col space-y-3">
                                         <hr/>
                                         <div className="w-full">

@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Для браузерів, що підтримують WebKit */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Ширина скролу */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Колір фону скролу */
+    border-radius: 4px;  /* Закруглення фону */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888; /* Колір "ручки" скролу */
+    border-radius: 4px; /* Закруглення "ручки" */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Колір "ручки" при наведенні */
+}

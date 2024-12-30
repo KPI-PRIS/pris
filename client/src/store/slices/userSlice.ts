@@ -27,6 +27,7 @@ const userSlice = createSlice({
             return action.payload;
         },
         clearUser() {
+            CookieService.deleteToken();
             return null;
         },
     },

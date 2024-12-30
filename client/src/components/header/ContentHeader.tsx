@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
-import {Button, NavbarContent} from "@nextui-org/react";
-import Bucket from "../../svgs/Bucket.tsx";
+import {NavbarContent} from "@nextui-org/react";
 
 export default function ContentHeader() {
     return (

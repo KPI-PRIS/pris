@@ -16,8 +16,8 @@ export default function CartInfoItem({item}: { item: Item }) {
 
     return (
         <div className="w-full h-32 flex flex-row space-x-10 mt-1 p-3">
-            <Image src={item.image_url} isZoomed height={96} width={90}/>
-            <div className="flex flex-col">
+            <Image src={item.image_url} isZoomed height={96} width={100}/>
+            <div className="flex flex-col w-full">
                 <h1 className="text-lg font-bold">{item.name}</h1>
                 <div>Ціна: {prettyPrice(item.price)}</div>
                 <div className="flex flex-row space-x-4">
