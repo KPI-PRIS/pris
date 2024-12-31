@@ -4,6 +4,7 @@ import {getMerches} from "./http.ts";
 import {IMerch, IMerchPagination} from "../../components/merch/IMerch.ts";
 import {Pagination} from "@nextui-org/react";
 import MerchCard from "../../components/merch/MerchCard.tsx";
+import LoadingSpinner from "../../components/LoadingSpinner.tsx";
 
 export default function MerchandiseListPage() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -20,7 +21,7 @@ export default function MerchandiseListPage() {
         <div className="text-5xl text-white p-5 bg-black text-center font-extrabold border-2 rounded-b-xl">
             Фан-шоп
         </div>
-        {isLoading && <p>Вантаження даних</p>}
+        <LoadingSpinner isVisible={isLoading} text="товари"/>
         {data &&
             <>
                 <div className="grid grid-cols-3 gap-4 mt-3">

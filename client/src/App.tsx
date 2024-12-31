@@ -1,5 +1,4 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import UsersPage from "./pages/user/UsersPage.tsx";
 import MainPage from "./pages/MainPage.tsx";
 import TeamsPage from "./pages/team/TeamPage.tsx";
 import RegistrationPage from "./pages/auth/registration/RegistrationPage.tsx";
@@ -13,6 +12,7 @@ import OrderPage from "./pages/order/OrderPage.tsx";
 import AuthLayout from "./pages/AuthLayout.tsx";
 import ProfilePage from "./pages/profile/ProfilePage.tsx";
 import OrderPersonalListPage from "./pages/order/OrderPersonalListPage.tsx";
+import TeamFormPage from "./pages/team/form/TeamFormPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
                 index: true,
                 element: <MainPage/>
             },
+
             {
                 path: '/auth',
                 element: <AuthLayout/>,
@@ -38,16 +39,22 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path: '/auth-admin',
+                element: <AuthLayout role="ADMIN"/>,
+                children: [
+                    {
+                        path: 'team/manage',
+                        element: <TeamFormPage/>
+                    },
+                ]
+            },
+            {
                 path: '/login',
                 element: <LoginPage/>
             },
             {
                 path: '/registration',
                 element: <RegistrationPage/>
-            },
-            {
-                path: '/users',
-                element: <UsersPage/>
             },
             {
                 path: '/teams',

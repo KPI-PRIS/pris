@@ -1,5 +1,6 @@
 import {useQuery} from "react-query";
-import {getTeams, Team} from "./team-service.ts";
+import {getTeams} from "./team-service.ts";
+import {Team} from "./ITeam.ts";
 
 export default function TeamsPage() {
     const {isLoading, error, data} = useQuery<Team[], Error>('teams', getTeams)

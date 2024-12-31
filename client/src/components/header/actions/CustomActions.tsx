@@ -1,9 +1,11 @@
-import {Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, User} from "@nextui-org/react";
+import {Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
 import {clearUser, CustomUser} from "../../../store/slices/userSlice.ts";
-import {getTranslateRole} from "../../../utils/utils.ts";
 import {useDispatch} from "react-redux";
-import {Action, avatarProps, classDropDown, getListActionsByRole, itemClasses} from "./utils.ts";
+import {Action, classDropDown, getListActionsByRole, itemClasses} from "./utils.ts";
 import {useNavigate} from "react-router";
+import {sendSuccessfulNotify} from "../../../utils/NotifyUtils.ts";
+import {getTranslateRole} from "../../../utils/utils.ts";
+import {AvatarCustom} from "../../AvatarCustom.tsx";
 
 
 export default function CustomActions({user}: { user: CustomUser }) {
@@ -12,6 +14,8 @@ export default function CustomActions({user}: { user: CustomUser }) {
 
     function handleLogout() {
         dispatch(clearUser())
+        nav('/')
+        sendSuccessfulNotify('Ви успішно вийшли')
     }
 
     console.log(user.role)
@@ -19,7 +23,8 @@ export default function CustomActions({user}: { user: CustomUser }) {
     return (
         <Dropdown showArrow classNames={classDropDown} radius="sm">
             <DropdownTrigger>
-                <Avatar isBordered as="button" className="transition-transform" src={avatarProps.src}/>
+                <Avatar isBordered as="button" className="transition-transform"
+                        src={user.image_url}/>
             </DropdownTrigger>
             <DropdownMenu
                 aria-label="Custom item styles"
@@ -29,11 +34,12 @@ export default function CustomActions({user}: { user: CustomUser }) {
             >
                 <DropdownSection showDivider aria-label="Profile & Actions">
                     <DropdownItem key="profile" isReadOnly className="h-14 gap-2 opacity-100">
-                        <User
-                            avatarProps={avatarProps}
-                            description={`роль: ${getTranslateRole(user.role.toLowerCase())}`}
-                            name={user.name}
-                        />
+                        <AvatarCustom src={user.image_url}>
+                            <div className="flex flex-col justify-center">
+                                <p className="font-medium">{user.name}</p>
+                                <p className="text-xs opacity-50">{`роль: ${getTranslateRole(user.role.toLowerCase())}`}</p>
+                            </div>
+                        </AvatarCustom>
                     </DropdownItem>
                     <DropdownItem key="own-profile" onPress={() => nav('/auth/profile')}>
                         Особистий профіль

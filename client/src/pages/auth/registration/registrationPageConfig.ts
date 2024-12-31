@@ -10,8 +10,9 @@ export const RegistrationSchema = Yup.object().shape({
 export const registrationFields = [
     {name: "email", type: "email", label: "Пошта"},
     {name: "name", type: "text", label: "Ім'я"},
-    {name: "phone", type: "text", label: "Телефон"},
     {name: "password", type: "password", label: "Пароль"},
+    {name: "phone", type: "text", label: "Телефон"},
+    {name: "image_url", type: "url", label: "Фото"},
 ];
 
 export interface RegistrationValues {

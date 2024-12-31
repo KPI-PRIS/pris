@@ -11,6 +11,7 @@ export interface CustomUser {
     phone: string;
     registeredAt: string;
     role: UserRoles;
+    image_url: string;
 }
 
 export type UserState = CustomUser | null;

@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import {IUserLogin} from "./interfaces/IUserLogin";
 import {IUserCreateDto} from "./interfaces/IUserCreateDto";
 import CustomError from "./interfaces/IError";
+import {Role} from "@prisma/client";
 
 @Injectable()
 export class UserService implements UserRepository {
@@ -14,8 +15,15 @@ export class UserService implements UserRepository {
     constructor(private readonly prisma: PrismaService) {
     }
 
-    async findAll(): Promise<IUser[]> {
+    findAll(): Promise<IUser[]> {
         return this.prisma.user.findMany();
+    }
+
+    findAllByRole(role: string): Promise<IUser[]> {
+        if (!Object.values(Role).includes(role as Role)) {
+            throw new Error(`Немає такої ролі: ${role}`);
+        }
+        return this.prisma.user.findMany({where: {role: role as Role}});
     }
 
     async findOneByCredentials({email, password}: IUserLogin): Promise<IUser | CustomError> {
@@ -36,7 +44,7 @@ export class UserService implements UserRepository {
         return user;
     }
 
-    async findOneById(id: string): Promise<IUser> {
+    findOneById(id: string): Promise<IUser> {
         return this.prisma.user.findUnique({where: {id}});
     }
 
@@ -50,14 +58,14 @@ export class UserService implements UserRepository {
         return this.prisma.user.create({data: {...data, password: hashPassword}})
     }
 
-    async updateById({id, data}: IUpdateParamsById): Promise<IUser> {
+    updateById({id, data}: IUpdateParamsById): Promise<IUser> {
         return this.prisma.user.update({
             data,
             where: {id},
         });
     }
 
-    async deleteById(id: string): Promise<IUser> {
+    deleteById(id: string): Promise<IUser> {
         return this.prisma.user.delete({
             where: {id},
         });

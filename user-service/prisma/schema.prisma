@@ -28,4 +28,5 @@ model User {
   phone        String?
   registeredAt DateTime @default(now())
   role         Role     @default(FAN)
+  image_url    String   @default("https://cdn-icons-png.flaticon.com/512/7458/7458816.png")
 }

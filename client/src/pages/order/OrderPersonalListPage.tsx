@@ -5,10 +5,12 @@ import CartList from "../../components/cart/CartList.tsx";
 import {Order, translateStatus} from "./interfaces.ts";
 import {getTime, prettyPrice} from "../../utils/utils.ts";
 import {ReactNode} from "react";
+import {Link} from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner.tsx";
 
 
 export default function OrderPersonalListPage() {
-    const {data: orders} = useQuery({
+    const {data: orders, isLoading} = useQuery({
         queryKey: 'personal-orders',
         queryFn: getPersonalOrders
     })
@@ -29,6 +31,14 @@ export default function OrderPersonalListPage() {
             </CardHeader>
             <hr/>
             <CardBody>
+                <LoadingSpinner isVisible={isLoading} text={"ваші замовлення"}/>
+                {orders && orders.length === 0 &&
+                    <p className="text-xl flex justify-center space-x-2">
+                        <p>Кошик порожній.</p> <Link to='/merches'
+                                                     className="text-orange-500 hover:text-orange-300"> Перейти в
+                        фан-шоп</Link>
+                    </p>
+                }
                 {orders && <Accordion variant="splitted">
                     {orders.map((order: Order) => (
                         <AccordionItem key={order.id} title={getNode(order)}

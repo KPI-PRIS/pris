@@ -18,7 +18,7 @@ export function translateStatus(status: Status): string {
         [Status.DELIVERED]: "Доставлене",
     };
 
-    return translations[status] || status; // Повертає переклад або сам статус, якщо переклад відсутній
+    return translations[status] || status;
 }
 
 // Інтерфейс для квитка

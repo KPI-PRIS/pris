@@ -35,4 +35,9 @@ export class UserController {
     updateById(@Body() params: IUpdateParamsById): Observable<IUser> {
         return this.user_microservice.send<IUser>('user_update', params);
     }
+
+    @Get('role/:role')
+    getUserByRole(@Param('role') role: string): Observable<IUser> {
+        return this.user_microservice.send<IUser>('users_find_by_role', role);
+    }
 }

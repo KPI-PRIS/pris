@@ -10,6 +10,7 @@ import {useMutation} from "react-query";
 import {createOrder} from "./http.ts";
 import CartListInfo from "../../components/cart/CartListInfo.tsx";
 import {UserState} from "../../store/slices/userSlice.ts";
+import {sendInfoNotify} from "../../utils/NotifyUtils.ts";
 
 export default function OrderPage() {
     const user: UserState = useSelector((state: StoreState) => state.user)
@@ -24,10 +25,16 @@ export default function OrderPage() {
         }
     }, [cart]);
 
+
+    function handleCancel() {
+        dispatch(clearCart())
+        sendInfoNotify("Кошик тепер пустий")
+        navigate('/')
+    }
+
     function handlePayment() {
         doPay().then((res) => {
             dispatch(clearCart())
-
             window.location.href = res
         })
     }
@@ -44,7 +51,7 @@ export default function OrderPage() {
                     </div>
                 </CardBody>
                 <CardFooter className="flex flex-row justify-around">
-                    <Button variant="light" color="danger" fullWidth>Відмовитись</Button>
+                    <Button variant="light" color="danger" fullWidth onPress={handleCancel}>Відмовитись</Button>
                     <Button variant="shadow" color="success" fullWidth onPress={handlePayment}>Заплатити</Button>
                 </CardFooter>
             </>

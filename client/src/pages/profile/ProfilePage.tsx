@@ -2,7 +2,6 @@ import {UserState} from "../../store/slices/userSlice.ts";
 import {useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import {Badge, Card, CardBody, CardHeader, Image, Progress} from "@nextui-org/react";
-import {avatarProps} from "../../components/header/actions/utils.ts";
 import {getTranslateRole} from "../../utils/utils.ts";
 
 export default function ProfilePage() {
@@ -15,7 +14,7 @@ export default function ProfilePage() {
                     <Badge content="Редагувати" variant="shadow" color="warning" className="p-2">
                         <CardHeader className=" p-3 flex flex-row space-x-10">
                             <div className="flex flex-col">
-                                <Image src={avatarProps.src} height={250} isZoomed/>
+                                <Image src={user.image_url} height={250} isZoomed/>
                                 <p className="flex justify-center">{getTranslateRole(user.role)}</p>
                             </div>
                             <div className="flex flex-col justify-center space-y-3 m-10 rounded w-full h-full px-3">

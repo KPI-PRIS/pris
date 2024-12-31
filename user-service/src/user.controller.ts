@@ -38,6 +38,11 @@ export class UserController implements UserRepository {
         return this.userService.findOneById(id);
     }
 
+    @MessagePattern('users_find_by_role')
+    findByRole(role: string): Promise<IUser[]> {
+        return this.userService.findAllByRole(role.toUpperCase());
+    }
+
     @MessagePattern('user_update')
     updateById(params: IUpdateParamsById): Promise<IUser> {
         return this.userService.updateById(params);

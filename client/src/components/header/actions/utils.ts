@@ -1,8 +1,7 @@
 import {AvatarProps} from "@nextui-org/avatar";
 
 export const avatarProps: Partial<AvatarProps> = {
-    size: "sm",
-    src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+    size: "sm"
 }
 export const itemClasses = {
     base: [
@@ -33,23 +32,27 @@ export function getListActionsByRole(role: string): Action[] {
         case "admin":
             return [
                 {
-                    path: '/match/manage',
+                    path: '/auth-admin/match/manage',
                     text: 'Матчи',
                 },
                 {
-                    path: '/coach/manage',
+                    path: '/auth-admin/team/manage',
+                    text: 'Створити команду',
+                },
+                {
+                    path: '/auth-admin/coach/manage',
                     text: 'Тренери',
                 },
                 {
-                    path: '/news/manage',
+                    path: '/auth-admin/news/manage',
                     text: 'Новини',
                 },
                 {
-                    path: '/orders/manage',
+                    path: '/auth-admin/orders/manage',
                     text: 'Замовлення',
                 },
                 {
-                    path: '/state/manage',
+                    path: '/auth-admin/state/manage',
                     text: 'Заяви',
                 },
             ]
