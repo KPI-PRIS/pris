@@ -8,7 +8,7 @@ import {
     Select,
     SelectedItems,
     SelectItem,
-    Spinner
+    Textarea
 } from "@nextui-org/react";
 import {Form, Formik} from "formik";
 import {useQuery} from "react-query";
@@ -16,6 +16,7 @@ import {CustomUser} from "../../../store/slices/userSlice.ts";
 import axios from "axios";
 import {HEADER_AUTH} from "../../../utils/utils.ts";
 import SelectUser from "../../../components/form/SelectUser.tsx";
+import LoadingSpinner from "../../../components/LoadingSpinner.tsx";
 
 
 const initialValues = {
@@ -64,11 +65,13 @@ export default function TeamFormPage() {
     };
 
     if (LoadingCoach || LoadingPlayer) {
-        return <Spinner label="Вантаження даних зачекайте будь ласка"/>
+        return <LoadingSpinner isVisible/>
     }
 
     if (!coaches || coaches.length === 0 || !players || players.length === 0) {
-        return <p className="bg-black text-white p-10 text-2xl mt-10 rounded">Не знайшли жодного гравця чи тренера</p>
+        return <p className="bg-black text-white p-10 text-2xl mt-10 rounded">
+            Не знайшли жодного гравця чи тренера
+        </p>
     }
 
     return (
@@ -93,7 +96,7 @@ export default function TeamFormPage() {
                                 onChange={(e) => setFieldValue("name", e.target.value)}
                             />
 
-                            <Input
+                            <Textarea
                                 label="Опис"
                                 isRequired
                                 type="text"

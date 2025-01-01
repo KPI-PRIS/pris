@@ -55,6 +55,10 @@ export function getListActionsByRole(role: string): Action[] {
                     path: '/auth-admin/state/manage',
                     text: 'Заяви',
                 },
+                {
+                    path: '/auth-admin/merch/manage/create',
+                    text: 'Додати товар',
+                },
             ]
         case "coach":
             return [

@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {IUpdateParamsById, MerchRepository} from "./interfaces/MerchRepository";
+import {MerchRepository} from "./interfaces/MerchRepository";
 import {IMerch} from "./interfaces/IMerch";
 import {PrismaService} from "./prisma.service";
 
@@ -10,6 +10,7 @@ export class MerchandiseService implements MerchRepository {
     }
 
     create(data: IMerch): Promise<IMerch> {
+        delete data.id
         return this.prisma.merchandise.create({data});
     }
 
@@ -43,14 +44,13 @@ export class MerchandiseService implements MerchRepository {
         return this.prisma.merchandise.findFirst({where: {id}});
     }
 
-    updateById(params: IUpdateParamsById): Promise<IMerch> {
+    updateById(updatedMerch: IMerch): Promise<IMerch> {
+        const {id} = updatedMerch;
+        delete updatedMerch.id
         return this.prisma.merchandise.update({
-            where: {
-                id: params.id
-            },
-            data: params.data
+            where: {id},
+            data: updatedMerch
         });
     }
-
 
 }

@@ -11,8 +11,8 @@ export enum Status {
 
 export function translateStatus(status: Status): string {
     const translations: Record<Status, string> = {
-        [Status.PENDING]: "Очікується",
-        [Status.COMPLETED]: "Завершене",
+        [Status.PENDING]: "Очікується оплата",
+        [Status.COMPLETED]: "Виконано",
         [Status.CANCELLED]: "Скасоване",
         [Status.SHIPPED]: "Відправлене",
         [Status.DELIVERED]: "Доставлене",

@@ -51,7 +51,7 @@ export interface MerchRepository {
      * @example
      * const updatedMerch = await repository.updateById({ id: "abc123", data: { ... } });
      */
-    updateById: (params: IUpdateParamsById) => Promise<IMerch>;
+    updateById: (params: IMerch) => Promise<IMerch>;
 
     /**
      * Видаляє товар за його ідентифікатором.

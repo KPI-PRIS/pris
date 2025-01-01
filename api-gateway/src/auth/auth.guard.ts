@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
             throw new UnauthorizedException('Invalid or expired token');
         }
 
-        if (roles && !roles.includes(user.role.toLowerCase())) {
+        if (roles && !roles.includes(user.role.toUpperCase())) {
             throw new ForbiddenException('Access denied: insufficient permissions');
         }
 

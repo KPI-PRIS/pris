@@ -1,6 +1,6 @@
 import {Controller} from '@nestjs/common';
 import {MerchandiseService} from './merchandise.service';
-import {IUpdateParamsById, MerchRepository} from "./interfaces/MerchRepository";
+import {MerchRepository} from "./interfaces/MerchRepository";
 import {IMerch} from "./interfaces/IMerch";
 import {MessagePattern} from "@nestjs/microservices";
 
@@ -77,7 +77,7 @@ export class MerchandiseController implements MerchRepository {
      * const updatedMerch = await updateById({ id: "abc123", data: { ... } });
      */
     @MessagePattern('merch_update_by_id')
-    updateById(params: IUpdateParamsById): Promise<IMerch> {
+    async updateById(params: IMerch): Promise<IMerch> {
         return this.merchandiseService.updateById(params);
     }
 }

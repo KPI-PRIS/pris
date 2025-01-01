@@ -5,14 +5,17 @@ import {getMerchById} from "./http.ts";
 import {Button, Card, Image, Input, Spinner} from "@nextui-org/react";
 import {ChangeEvent, useState} from "react";
 import Bucket from "../../svgs/Bucket.tsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addItem, Item} from "../../store/slices/cart/cartSlice.ts";
+import {UserState} from "../../store/slices/userSlice.ts";
+import {StoreState} from "../../store/store.ts";
 
 export default function MerchPage() {
     const {id} = useParams()
     const navigation = useNavigate();
     const [countItem, setCountItem] = useState<number>(1)
     const dispatch = useDispatch();
+    const user: UserState = useSelector((state: StoreState) => state.user)
     const {data: merch, isLoading} = useQuery<IMerch>({
         queryKey: [`merch-page-${id}`],
         queryFn: () => getMerchById(id || '')
@@ -97,6 +100,12 @@ export default function MerchPage() {
                         </Button>
                     </div>
                 </>}
+                {user && user.role === 'ADMIN' && (
+                    <Button variant="ghost"
+                            onPress={() => navigation(`/auth-admin/merch/manage/${merch.id}`)}
+                            className="mt-5"
+                            color="warning">Редагувати</Button>
+                )}
             </div>
         </>
         }

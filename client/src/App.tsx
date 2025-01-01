@@ -13,6 +13,7 @@ import AuthLayout from "./pages/AuthLayout.tsx";
 import ProfilePage from "./pages/profile/ProfilePage.tsx";
 import OrderPersonalListPage from "./pages/order/OrderPersonalListPage.tsx";
 import TeamFormPage from "./pages/team/form/TeamFormPage.tsx";
+import MerchEditPage from "./components/merch/MerchEditPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
                     {
                         path: 'team/manage',
                         element: <TeamFormPage/>
+                    },
+                    {
+                        path: 'merch/manage/:id',
+                        element: <MerchEditPage/>
                     },
                 ]
             },
