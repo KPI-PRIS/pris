@@ -15,10 +15,6 @@ class CookieService {
         Cookies.remove(name, {path: "/"});
     }
 
-    static isCookiePresent(name: string) {
-        return Cookies.get(name) !== undefined;
-    }
-
     static saveToken(value: string, days = 7) {
         Cookies.set(this.ACCESS_TOKEN, value, {expires: days, path: "/"});
     }
@@ -29,10 +25,6 @@ class CookieService {
 
     static deleteToken() {
         Cookies.remove(this.ACCESS_TOKEN, {path: "/"});
-    }
-
-    static isTokenPresent() {
-        return Cookies.get(this.ACCESS_TOKEN) !== undefined;
     }
 
 }

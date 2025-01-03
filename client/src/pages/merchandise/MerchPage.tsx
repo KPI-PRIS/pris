@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addItem, Item} from "../../store/slices/cart/cartSlice.ts";
 import {UserState} from "../../store/slices/userSlice.ts";
 import {StoreState} from "../../store/store.ts";
+import {prettyPrice} from "../../utils/utils.ts";
 
 export default function MerchPage() {
     const {id} = useParams()
@@ -77,9 +78,12 @@ export default function MerchPage() {
                 <h3 className="text-lg mt-1 font-bold">Опис:</h3>
                 <p>{merch.description}</p>
                 <br/>
+                <h3 className="text-lg font-bold w-fit mt-3">Ціна: {prettyPrice(merch.price)} <small>₴</small></h3>
+                <br/>
                 <Input
                     label="Кількість товару"
                     type="number"
+                    className=""
                     labelPlacement="outside-left"
                     value={countItem.toString()}
                     onChange={changeCount}
