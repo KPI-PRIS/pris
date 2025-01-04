@@ -11,10 +11,13 @@ export default function NewCard({news, isEndImage = true}: NewCardProps) {
         <Card>
             <CardBody
                 className={`flex ${isEndImage ? 'flex-row-reverse' : 'flex-row'} space-x-10 justify-center items-center ${isEndImage ? 'bg-gray-200' : ''}`}>
-                <Image
-                    src={news.image_url}
-                    width={500}
-                />
+                <div className="flex flex-col">
+                    <Image
+                        src={news.image_url}
+                        width={500}
+                    />
+                    <p className="flex justify-center p-1 opacity-75">{news.date}</p>
+                </div>
                 <div className="w-1/2 space-y-5 px-1">
                     <h1 className="text-2xl font-bold">{news.title}</h1>
                     <p>{news.content}</p>
