@@ -25,18 +25,4 @@ export class AuthController {
             .send('user_create', data)
             .pipe(map((res) => this.authService.handleResponse(res)));
     }
-
-    @Get('info')
-    getInfoFromToken(@Headers('authorization') authHeader: string) {
-        if (!authHeader) {
-            throw new UnauthorizedException('Authorization header is missing');
-        }
-
-        const [type, token] = authHeader.split(' ');
-        if (type !== 'Bearer' || !token) {
-            throw new UnauthorizedException('Invalid token format');
-        }
-
-        return this.authService.verifyToken(token);
-    }
 }
