@@ -1,5 +1,5 @@
 .error-container {
-    @apply grid place-content-center
+    @apply grid place-content-center w-full bg-black h-screen
 }
 
 .error-box {
@@ -7,7 +7,7 @@
 }
 
 .error-header-text {
-    @apply text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl
+    @apply text-2xl font-bold tracking-tight text-gray-400 sm:text-4xl
 }
 
 .error-header-code {

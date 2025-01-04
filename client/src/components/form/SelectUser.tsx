@@ -1,7 +1,7 @@
-import {CustomUser} from "../../store/slices/userSlice.ts";
+import {User} from "../../store/slices/userSlice.ts";
 import {AvatarCustom} from "../AvatarCustom.tsx";
 
-export default function SelectUser({user}: { user: CustomUser | null }) {
+export default function SelectUser({user}: { user: User | null }) {
     if (!user) {
         return <p>вантаження...</p>
     }

@@ -6,7 +6,7 @@ import Header from "../../components/header/Header.tsx";
 
 
 interface ErrorProps {
-    errorCode: ErrorCodes;
+    errorCode?: ErrorCodes;
 }
 
 export default function ErrorPage({errorCode = 404}: ErrorProps) {

@@ -1,5 +1,5 @@
 import {Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
-import {clearUser, CustomUser} from "../../../store/slices/userSlice.ts";
+import {clearUser, User} from "../../../store/slices/userSlice.ts";
 import {useDispatch} from "react-redux";
 import {Action, classDropDown, getListActionsByRole, itemClasses} from "./utils.ts";
 import {useNavigate} from "react-router";
@@ -8,7 +8,7 @@ import {getTranslateRole} from "../../../utils/utils.ts";
 import {AvatarCustom} from "../../AvatarCustom.tsx";
 
 
-export default function CustomActions({user}: { user: CustomUser }) {
+export default function CustomActions({user}: { user: User }) {
     const nav = useNavigate()
     const dispatch = useDispatch();
 

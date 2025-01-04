@@ -1,13 +1,13 @@
 import {Button, NavbarContent} from "@nextui-org/react";
 import {Link} from "react-router-dom";
-import {CustomUser} from "../../store/slices/userSlice.ts";
+import {User} from "../../store/slices/userSlice.ts";
 import {useSelector} from "react-redux";
 import {StoreState} from "../../store/store.ts";
 import CustomActions from "./actions/CustomActions.tsx";
 import BucketAction from "./BucketAction.tsx";
 
 export default function ActionsHeader() {
-    const user: CustomUser | null = useSelector((state: StoreState) => state.user);
+    const user: User | null = useSelector((state: StoreState) => state.user);
 
     return (
         <NavbarContent justify="end">

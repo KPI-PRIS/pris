@@ -1,5 +1,4 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import MainPage from "./pages/MainPage.tsx";
 import TeamsPage from "./pages/team/TeamPage.tsx";
 import RegistrationPage from "./pages/auth/registration/RegistrationPage.tsx";
 import RootLayout from "./pages/RootLayout.tsx";
@@ -14,15 +13,20 @@ import ProfilePage from "./pages/profile/ProfilePage.tsx";
 import OrderPersonalListPage from "./pages/order/OrderPersonalListPage.tsx";
 import TeamFormPage from "./pages/team/form/TeamFormPage.tsx";
 import MerchEditPage from "./components/merch/MerchEditPage.tsx";
+import CoachesPage from "./pages/user/CoachesPage.tsx";
+import ErrorPage from "./pages/errors/ErrorPage.tsx";
+import PlayersPage from "./pages/user/PlayersPage.tsx";
+import NewsListPage from "./pages/news/NewsListPage.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 index: true,
-                element: <MainPage/>
+                element: <NewsListPage/>
             },
 
             {
@@ -52,6 +56,14 @@ const router = createBrowserRouter([
                         element: <MerchEditPage/>
                     },
                 ]
+            },
+            {
+                path: '/coaches',
+                element: <CoachesPage/>
+            },
+            {
+                path: '/players',
+                element: <PlayersPage/>
             },
             {
                 path: '/login',

@@ -12,11 +12,10 @@ import {
 } from "@nextui-org/react";
 import {Form, Formik} from "formik";
 import {useQuery} from "react-query";
-import {CustomUser} from "../../../store/slices/userSlice.ts";
-import axios from "axios";
-import {HEADER_AUTH} from "../../../utils/utils.ts";
+import {User} from "../../../store/slices/userSlice.ts";
 import SelectUser from "../../../components/form/SelectUser.tsx";
 import LoadingSpinner from "../../../components/LoadingSpinner.tsx";
+import {getCoaches, getPlayers} from "./http.ts";
 
 
 const initialValues = {
@@ -28,35 +27,9 @@ const initialValues = {
 };
 
 
-async function getCoaches() {
-    try {
-        const data = await axios.get<CustomUser[]>('/user/role/coach', {
-            headers: HEADER_AUTH
-        })
-
-        return data.data;
-    } catch (e) {
-        console.log(e)
-        return []
-    }
-}
-
-async function getPlayers() {
-    try {
-        const data = await axios.get<CustomUser[]>('/user/role/player', {
-            headers: HEADER_AUTH
-        })
-
-        return data.data;
-    } catch (e) {
-        console.log(e)
-        return []
-    }
-}
-
 export default function TeamFormPage() {
-    const {data: coaches, isLoading: LoadingCoach} = useQuery<CustomUser[]>('coaches', getCoaches)
-    const {data: players, isLoading: LoadingPlayer} = useQuery<CustomUser[]>('players', getPlayers)
+    const {data: coaches, isLoading: LoadingCoach} = useQuery<User[]>('coaches', getCoaches)
+    const {data: players, isLoading: LoadingPlayer} = useQuery<User[]>('players', getPlayers)
 
     const onSubmit = (values: any) => {
         values.players = Array.from(values.players).map((p: any) => JSON.parse(p))
@@ -113,7 +86,7 @@ export default function TeamFormPage() {
                                     variant="underlined"
                                     size="md"
                                     onSelectionChange={(key) => setFieldValue("coach", key.currentKey)}
-                                    renderValue={(items: SelectedItems<CustomUser>) =>
+                                    renderValue={(items: SelectedItems<User>) =>
                                         items.map((item) => <SelectUser user={item.data ? item.data : null}/>)
                                     }
                                 >

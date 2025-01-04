@@ -1,8 +1,3 @@
-import {AvatarProps} from "@nextui-org/avatar";
-
-export const avatarProps: Partial<AvatarProps> = {
-    size: "sm"
-}
 export const itemClasses = {
     base: [
         "rounded-md",
@@ -33,7 +28,7 @@ export function getListActionsByRole(role: string): Action[] {
             return [
                 {
                     path: '/auth-admin/match/manage',
-                    text: 'Матчи',
+                    text: 'Керувати матчами',
                 },
                 {
                     path: '/auth-admin/team/manage',
@@ -41,19 +36,19 @@ export function getListActionsByRole(role: string): Action[] {
                 },
                 {
                     path: '/auth-admin/coach/manage',
-                    text: 'Тренери',
+                    text: 'Додати тренера',
                 },
                 {
                     path: '/auth-admin/news/manage',
-                    text: 'Новини',
+                    text: 'Додати новину',
                 },
                 {
                     path: '/auth-admin/orders/manage',
-                    text: 'Замовлення',
+                    text: 'Список замовлень',
                 },
                 {
                     path: '/auth-admin/state/manage',
-                    text: 'Заяви',
+                    text: 'Список заяв',
                 },
                 {
                     path: '/auth-admin/merch/manage/create',
