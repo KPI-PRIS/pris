@@ -17,6 +17,8 @@ import CoachesPage from "./pages/user/CoachesPage.tsx";
 import ErrorPage from "./pages/errors/ErrorPage.tsx";
 import PlayersPage from "./pages/user/PlayersPage.tsx";
 import NewsListPage from "./pages/news/NewsListPage.tsx";
+import UserCreator from "./pages/user/UserCreator.tsx";
+import NewCreator from "./pages/news/NewCreator.tsx";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
                     {
                         path: 'merch/manage/:id',
                         element: <MerchEditPage/>
+                    },
+                    {
+                        path: 'user/manage',
+                        element: <UserCreator/>
+                    },
+                    {
+                        path: 'news/manage',
+                        element: <NewCreator/>
                     },
                 ]
             },

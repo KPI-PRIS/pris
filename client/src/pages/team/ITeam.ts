@@ -1,4 +1,4 @@
-import {User} from "../user/user-service.ts";
+import {User} from "../../store/slices/userSlice.ts";
 
 export interface Team {
     id: number;

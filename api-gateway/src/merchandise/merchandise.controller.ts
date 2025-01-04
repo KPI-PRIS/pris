@@ -1,6 +1,5 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, UseGuards} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
-import {IUpdateParamsById} from '../../../merchandise-service/src/interfaces/MerchRepository'
 import {IMerch} from "../../../merchandise-service/src/interfaces/IMerch";
 import {Observable} from "rxjs";
 import {AuthGuard} from "../auth/auth.guard";

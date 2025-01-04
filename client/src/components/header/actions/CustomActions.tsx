@@ -53,8 +53,8 @@ export default function CustomActions({user}: { user: User }) {
                 </DropdownSection>
                 <DropdownSection showDivider aria-label="Preferences" hidden={"FAN" === user.role}>
                     {getListActionsByRole(user.role).map((action: Action) =>
-                        <DropdownItem key={action.text} onPress={() => nav(action.path)}>
-                            {action.text}
+                        <DropdownItem key={action.text} onPress={() => nav(action.path)} isDisabled={action.isDisable}>
+                            {action.text} {action.isDisable && <sup>Скоро</sup>}
                         </DropdownItem>
                     )}
                 </DropdownSection>

@@ -20,6 +20,7 @@ export const classDropDown = {
 export interface Action {
     path: string;
     text: string;
+    isDisable?: boolean;
 }
 
 export function getListActionsByRole(role: string): Action[] {
@@ -29,26 +30,29 @@ export function getListActionsByRole(role: string): Action[] {
                 {
                     path: '/auth-admin/match/manage',
                     text: 'Керувати матчами',
+                    isDisable: true,
+                },
+                {
+                    path: '/auth-admin/orders/manage',
+                    text: 'Список замовлень',
+                    isDisable: true,
+                },
+                {
+                    path: '/auth-admin/state/manage',
+                    text: 'Список заяв',
+                    isDisable: true,
                 },
                 {
                     path: '/auth-admin/team/manage',
                     text: 'Створити команду',
                 },
                 {
-                    path: '/auth-admin/coach/manage',
-                    text: 'Додати тренера',
+                    path: '/auth-admin/user/manage',
+                    text: 'Додати користувача',
                 },
                 {
                     path: '/auth-admin/news/manage',
                     text: 'Додати новину',
-                },
-                {
-                    path: '/auth-admin/orders/manage',
-                    text: 'Список замовлень',
-                },
-                {
-                    path: '/auth-admin/state/manage',
-                    text: 'Список заяв',
                 },
                 {
                     path: '/auth-admin/merch/manage/create',
@@ -60,18 +64,22 @@ export function getListActionsByRole(role: string): Action[] {
                 {
                     path: '/team/plan/create',
                     text: 'Створити план команди',
+                    isDisable: true,
                 },
                 {
                     path: '/player/plan/create',
                     text: 'Створити індивідуальний план',
+                    isDisable: true,
                 },
                 {
                     path: '/training/programs',
                     text: 'Програми тренування',
+                    isDisable: true,
                 },
                 {
                     path: '/team/info',
                     text: 'Інформація про команду',
+                    isDisable: true,
                 },
             ]
         case "player":
@@ -79,10 +87,12 @@ export function getListActionsByRole(role: string): Action[] {
                 {
                     path: '/player/plan',
                     text: 'Індивідуальний план',
+                    isDisable: true,
                 },
                 {
                     path: '/team/info',
                     text: 'Інформація про команду',
+                    isDisable: true,
                 },
             ]
     }

@@ -40,7 +40,8 @@ export default function ContentHeader() {
                 <DropdownMenu aria-label="Static Actions">
                     <DropdownItem key="coaches" onPress={() => nav('/coaches')}>Тренери</DropdownItem>
                     <DropdownItem key="players" onPress={() => nav('/players')}>Футболісти</DropdownItem>
-                    <DropdownItem key="players" onPress={() => nav('/teams')}>Команди</DropdownItem>
+                    <DropdownItem key="teams" onPress={() => nav('/teams')}
+                                  isDisabled>Команди <sup>Скоро</sup></DropdownItem>
                 </DropdownMenu>
             </Dropdown>
 
